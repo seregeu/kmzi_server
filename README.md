@@ -1,2 +1,2 @@
 # spyserver
-Simple example of server to retrieve spicific information from mobile spy agent.
+Simple example of server which retrieves spicific information from mobile spy agent.
