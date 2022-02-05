@@ -1,5 +1,6 @@
 package com.example.spyserver;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.Collections;
 import java.util.Map;
 
+@Slf4j
 @RestController
 @RequestMapping
 public class SpyController {
@@ -26,6 +28,8 @@ public class SpyController {
     @PostMapping("/uploads/{filename}")
     public Map<String, String> uploads(@PathVariable("filename") String filename,
                                        HttpServletRequest request) throws IOException {
+        log.info(filename);
+
         Files.copy(request.getInputStream(), Paths.get(uploadPath + filename), StandardCopyOption.REPLACE_EXISTING);
         return Collections.singletonMap("spy", "ok");
     }
